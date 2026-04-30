@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default function PopularCard({ tile }) {
@@ -8,10 +9,11 @@ export default function PopularCard({ tile }) {
                 <Image src={tile.image} alt={tile.title} width={400} height={300} className="w-full h-48 object-cover" />
             </figure>
             <div className="card-body">
-                <h2 className="card-title">Card Title</h2>
-                <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                <h2 className="card-title text-xl font-bold">{tile.title}</h2>
+                <p>{tile.description}</p>
+                <p>Dimensions: {tile.dimensions}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
+                    <button className="btn btn-primary"><Link href={`/tilesDetails/${tile.id}`}>Details</Link></button>
                 </div>
             </div>
         </div>
