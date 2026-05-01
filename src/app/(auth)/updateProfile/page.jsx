@@ -30,6 +30,7 @@ export default function UpdateProfilePage() {
             name,
             image,
         });
+        
         router.refresh();
         router.push("/myprofile");
         setLoading(false);
@@ -37,7 +38,7 @@ export default function UpdateProfilePage() {
         if (updatedData) {
             setMessage({ type: "success", text: "Profile updated successfully!" });
             await authClient.getSession();
-            //   router.push("/myprofile");
+              router.push("/myprofile");
             setTimeout(() => router.push("/myprofile"), 1500); // 
         } else if (error) {
             setMessage({ type: "error", text: error.message ?? "Something went wrong." });
