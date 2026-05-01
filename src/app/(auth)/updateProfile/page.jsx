@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"; // ✅ fixed
 import { authClient, useSession } from "@/lib/auth-client";
 
 export default function UpdateProfilePage() {
-       const { data: session,refetch  } = useSession();
+    const { data: session, } = useSession();
     const user = session?.user;
     const router = useRouter(); // ✅ fixed
 
@@ -26,17 +26,19 @@ export default function UpdateProfilePage() {
         setLoading(true);
         setMessage(null);
 
-        const { data: updatedData, error,} = await authClient.updateUser({
+        const { data: updatedData, error, } = await authClient.updateUser({
             name,
             image,
         });
-
+        router.refresh();
+        router.push("/myprofile");
         setLoading(false);
 
         if (updatedData) {
             setMessage({ type: "success", text: "Profile updated successfully!" });
-              await refetch();
-            setTimeout(() => router.push("/myprofile"), 1500); // ✅ fixed
+            await authClient.getSession();
+            //   router.push("/myprofile");
+            setTimeout(() => router.push("/myprofile"), 1500); // 
         } else if (error) {
             setMessage({ type: "error", text: error.message ?? "Something went wrong." });
             console.error(error);
