@@ -1,44 +1,50 @@
 'use client'
+
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import { useState } from 'react';
-
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
-const LoginPage = () => {
+const RegisterPage = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
     const [isShowPassword, setIsShowPassword] = useState(false)
-    const handleLogin = async (data) => {
+    const handleRegister = async (data) => {
+        // console.log(data)
         const { name, email, password, photoUrl } = data;
-        const { data: res, error } = await authClient.signIn.email({
+        const { data: signUpData, error } = await authClient.signUp.email({
+            name: name,
             email: email,
             password: password,
-            rememberMe: true,
+            image: photoUrl,
             callbackURL: "/",
         });
-        // console.log(res, error)
+        // console.log(signUpData, error)
         if (error) {
             alert(error.message)
         }
-        if (res) {
-            alert("Login successful! ")
+        if (signUpData) {
+            alert("Registration successful! ")
         }
     }
-
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col">
                 <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
                     <div className="card-body">
-                        <h2 className='text-xl font-bold'>Login Your Account</h2>
-                        <form onSubmit={handleSubmit(handleLogin)} className="fieldset">
+                        <h2 className='text-xl font-bold'>Register Your Account</h2>
+                        <form onSubmit={handleSubmit(handleRegister)} className="fieldset">
+                            <label className="label">Name</label>
+                            <input type="text" {...register("name")} className="input" placeholder="Name" />
+                            <label className="label">Photo URL</label>
+                            <input type="text" {...register("photoUrl", { required: true })} className="input" placeholder="Photo URL" />
+                            {errors.photoUrl && <span className='text-red-600'>This field is required</span>}
                             <label className="label">Email</label>
-                            <input type="email" {...register("email")} className="input" placeholder="Email" />
+                            <input type="email" {...register("email", { required: true })} className="input" placeholder="Email" />
+                            {errors.email && <span className='text-red-600'>This field is required</span>}
                             <div className="relative">
                                 <input
                                     type={isShowPassword ? "text" : "password"}
@@ -56,10 +62,10 @@ const LoginPage = () => {
                             </div>
                             {errors.password && <span className='text-red-600'>This field is required</span>}
                             <div><a className="link link-hover">Forgot password?</a></div>
-                            <button type="submit" className="btn btn-neutral mt-4">Login</button>
+                            <button type="submit" className="btn btn-neutral mt-4">Register</button>
                             <p className="mt-4 text-xl">
-                                Dont have an account?{' '}
-                                <Link className="text-blue-600" href="/register">Register</Link>
+                                Already have an account?{' '}
+                                <Link className="text-blue-600" href="/login">Login</Link>
                             </p>
                         </form>
                     </div>
@@ -69,4 +75,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default RegisterPage;
