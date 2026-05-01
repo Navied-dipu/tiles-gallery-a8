@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tiles Gallery
 
-## Getting Started
+A modern tile showcase web application built with Next.js. Users can explore different tiles, view detailed information through protected routes, and authenticate using login and registration functionality.
 
-First, run the development server:
+## 🌐 Live Website
+
+🔗 https://tiles-gallery-a8.vercel.app/
+
+---
+
+## 📌 Project Purpose
+
+Tiles Gallery is designed to showcase different types of tiles in a clean and responsive UI. The project demonstrates authentication, private routing, dynamic data display, and modern frontend development using Next.js.
+
+---
+
+## 🚀 Features
+
+* 🔐 User Authentication (Login & Register)
+* 🛡️ Private Route Protection
+* 🧱 Display Tiles Gallery
+* 📄 Tile Details Page
+* 🎠 Marquee Animation using npm package
+* ⚡ Fast and Responsive UI
+* 🌙 Modern Design with Tailwind CSS
+* 🔄 Dynamic Routing with Next.js App Router
+
+---
+
+## 🛠️ Technologies Used
+
+* Next.js
+* React.js
+* Tailwind CSS
+* Firebase Authentication
+* MongoDB (if used)
+* React Fast Marquee
+* Vercel Deployment
+
+---
+
+## 📦 NPM Packages Used
+
+### Main Packages
+
+```bash
+npm install react-fast-marquee
+```
+
+### Other Packages
+
+```bash
+npm install better-auth
+npm install mongodb
+
+```
+
+---
+
+## 🔑 Authentication Features
+
+* User Registration
+* User Login
+* Logout Functionality
+* Protected Private Routes
+* Session-Based Access Control
+
+---
+
+## 📂 Pages Overview
+
+| Route         | Description                  |
+| ------------- | ---------------------------- |
+| `/`           | Home Page                    |
+| `/login`      | Login Page                   |
+| `/register`   | Registration Page            |
+| `/tiles`      | All Tiles Showcase           |
+| `/tiles/[id]` | Tile Details (Private Route) |
+
+---
+
+## 🖥️ Run Locally
+
+### Clone the project
+
+```bash
+git clone https://github.com/Navied-dipu/tiles-gallery-a8.git
+```
+
+### Go to the project directory
+
+```bash
+cd tiles-gallery
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Start development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## 📱 Responsive Design
 
-To learn more about Next.js, take a look at the following resources:
+The website is fully responsive and works smoothly on:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Mobile Devices
+* Tablets
+* Desktop Screens
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📸 Project Highlights
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Clean UI/UX
+* Smooth scrolling marquee
+* Secure authentication flow
+* Optimized image handling
+* Dynamic tile detail pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 👨‍💻 Developer
+
+Developed by Dipu
+
+---
