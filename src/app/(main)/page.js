@@ -8,7 +8,6 @@ export default function Home() {
     <div>
       <Hero></Hero>
       <Popular></Popular>
-      <Footer></Footer>
     </div>
   );
 }
