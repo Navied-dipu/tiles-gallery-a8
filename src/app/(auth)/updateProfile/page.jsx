@@ -1,31 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ fixed
 import { authClient, useSession } from "@/lib/auth-client";
-import { router } from "better-auth/api";
-import { redirect } from "next/navigation";
 
 export default function UpdateProfilePage() {
-    const { data: session } = useSession();
+       const { data: session,refetch  } = useSession();
     const user = session?.user;
+    const router = useRouter(); // ✅ fixed
 
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState(null); // { type: "success" | "error", text: string }
+    const [message, setMessage] = useState(null);
 
-    // Sync state once user loads
-    if (user && name === "" && image === "") {
-        setName(user.name ?? "");
-        setImage(user.image ?? "");
-    }
+    useEffect(() => {
+        if (user) {
+            setName(user.name ?? "");
+            setImage(user.image ?? "");
+        }
+    }, [user]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setMessage(null);
 
-        const { data: updatedData, error } = await authClient.updateUser({
+        const { data: updatedData, error,} = await authClient.updateUser({
             name,
             image,
         });
@@ -33,9 +34,9 @@ export default function UpdateProfilePage() {
         setLoading(false);
 
         if (updatedData) {
-            alert("Profile updated successfully!");
             setMessage({ type: "success", text: "Profile updated successfully!" });
-           redirect("/myprofile");
+              await refetch();
+            setTimeout(() => router.push("/myprofile"), 1500); // ✅ fixed
         } else if (error) {
             setMessage({ type: "error", text: error.message ?? "Something went wrong." });
             console.error(error);
