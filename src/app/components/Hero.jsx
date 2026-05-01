@@ -1,5 +1,6 @@
 import Marquee from "react-fast-marquee";
 import { marqueeNews } from "../../../public/data";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -37,9 +38,11 @@ export default function Hero() {
           </div>
 
           {/* CTA Button */}
-          <button className="btn btn-primary px-6 sm:px-8 md:px-10 text-sm sm:text-base md:text-lg">
-            Browse Now
-          </button>
+          <Link href="/alltiles">
+            <button className="btn btn-primary px-6 sm:px-8 md:px-10 text-sm sm:text-base md:text-lg">
+              Browse Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>
