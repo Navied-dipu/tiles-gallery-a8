@@ -5,8 +5,11 @@ import userimg from '@/assate/user.png'
 import Navlink from './Navlink'
 import { authClient } from '@/lib/auth-client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+
 
 export default function Navbar() {
+    const router = useRouter()
     const { data: session, isPanding } = authClient.useSession()
     const user = session?.user
     const [menuOpen, setMenuOpen] = useState(false)
@@ -41,7 +44,7 @@ export default function Navbar() {
                         <span className="loading loading-spinner loading-sm"></span>
                     ) : user ? (
                         <button
-                            onClick={() => authClient.signOut()}
+                            onClick={() => authClient.signOut({ fetchOptions: { onSuccess: () => router.push('/login') } })}
                             className='bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-1.5 rounded-lg transition'
                         >
                             Logout
@@ -90,7 +93,7 @@ export default function Navbar() {
                             <span className="loading loading-spinner loading-sm"></span>
                         ) : user ? (
                             <button
-                                onClick={() => { authClient.signOut(); setMenuOpen(false) }}
+                                onClick={() => { authClient.signOut({ fetchOptions: { onSuccess: () => router.push('/login') } }); setMenuOpen(false) }}
                                 className='bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-1.5 rounded-lg transition'
                             >
                                 Logout
