@@ -4,7 +4,10 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-
+export const metadata = {
+  title: "Tiles Gallery - My Profile",
+  description: "A collection of beautiful tiles for your inspiration.",
+};
 export default async function ProfilePage() {
     const session = await auth.api.getSession({
         headers: await headers(),
