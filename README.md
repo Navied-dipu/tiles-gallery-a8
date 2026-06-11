@@ -32,7 +32,6 @@ Tiles Gallery is designed to showcase different types of tiles in a clean and re
 * Next.js
 * React.js
 * Tailwind CSS
-* Firebase Authentication
 * MongoDB (if used)
 * React Fast Marquee
 * Vercel Deployment
